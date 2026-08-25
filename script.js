@@ -1,21 +1,31 @@
-const button = document.querySelector("button")
-const inputUni = document.getElementById("unitario")
-const inputDi = document.querySelector("dinheiro")
-const inputQua = document.getElementById("quantidade")
-const paragrafoTROCO = document.getElementById("TROCO")
+const botao = document.querySelector("button")
+const inputPreco = document.getElementById("preco")
+const inputQuantidade = document.getElementById("quantidade")
+const inputDinheiro = document.getElementById("dinheiro")
+const paragrafoResultado = document.getElementById("resultado")
 
-button.addEventListener("click", calcularTroco)
+botao.addEventListener("click", calcularTroco)
 
 function calcularTroco() {
-    const preçoUni = input.valueAsNumber
 
+    const preco = inputPreco.valueAsNumber
+    const quantidade = inputQuantidade.valueAsNumber
+    const dinheiro = inputDinheiro.valueAsNumber
 
-    if (preçoUni > dinheiro) {
-        const valorTroco = (minutosUtilizados - 100) * 2 + 50
-        const valorFaturaEditado = valorFatura.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+    const total = preco * quantidade
 
-        paragrafoResultado.textContent = `Valor da fatura: ${valorFaturaEditado}`
+    if (dinheiro >= total) {
+
+        const troco = dinheiro - total
+
+        paragrafoResultado.textContent =
+            `TROCO = ${troco.toFixed(2)}`
+
     } else {
-        paragrafoResultado.textContent = "Valor da fatura: R$ 50,00"
+
+        const falta = total - dinheiro
+
+        paragrafoResultado.textContent =
+            `DINHEIRO INSUFICIENTE. FALTAM ${falta.toFixed(2)} REAIS`
     }
 }
